@@ -76,6 +76,6 @@ int main() {
     fio;
     int w;
     cin >> w;
-    cout << ((w + 1) % 2 ? "YES" : "NO");
+    cout << ((w + 1) % 2 && w > 2 ? "YES" : "NO");
     return 0;
 }
