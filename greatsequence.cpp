@@ -96,7 +96,7 @@ int main() {
                     a.sc -= red;
                     freq[a.fs * x] -= red;
                 }
-                if (freq.count(a.fs / x)) {
+                if (freq.count(a.fs / x) && a.fs % x == 0) {
                     red = min(a.sc, freq[a.fs / x]);
                     a.sc -= red;
                     freq[a.fs / x] -= red;
