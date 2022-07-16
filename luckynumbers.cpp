@@ -72,17 +72,19 @@ inline ll fsLogPow(ll x, ll y) {
 
 int main() {
     fio;
-    // There are 2 possible choices for each digit of a plate of length k, meaning for a door number with
-    // length k, there are 2^k possible combinations
-    // For door numbers up to length n, that means the maximum number of offices is the sum of 2^k for all
-    // k values from 1 to n. In binary, this is essentially just setting the second to nth bit on (using 0 index).
+    /** There are 2 possible choices for each digit of a plate of length k, meaning for a door number with
+     * length k, there are 2^k possible combinations
+     * For door numbers up to length n, that means the maximum number of offices is the sum of 2^k for all
+     * k values from 1 to n. When thinking of this in binary form, the value this would be represented as
+     * 4 set bits followed by a zero, reading from most significant bit to least significant. This is almost
+     * identical to setting all the bits before the (n + 1)th bit, which is equal to 2 ^ (n + 1) - 1. To turn off
+     * the least significant bit, simply subtract 1 from the value, which yeilds 2 ^ (n + 1) - 2.
+    */
     int n;
     // Use an unsigned long long to shift easily
-    ull ans = 0, sf = 1;
+    ull ans = 0;
     cin >> n;
-    for (int i = 1; i <= n; i++) {
-        ans |= sf<<i;
-    }
+    ans = (2 << n) - 2;
     cout << ans;
     return 0;
 }
