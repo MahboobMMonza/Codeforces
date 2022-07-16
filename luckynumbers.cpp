@@ -72,6 +72,17 @@ inline ll fsLogPow(ll x, ll y) {
 
 int main() {
     fio;
-
+    // There are 2 possible choices for each digit of a plate of length k, meaning for a door number with
+    // length k, there are 2^k possible combinations
+    // For door numbers up to length n, that means the maximum number of offices is the sum of 2^k for all
+    // k values from 1 to n. In binary, this is essentially just setting the second to nth bit on (using 0 index).
+    int n;
+    // Use an unsigned long long to shift easily
+    ull ans = 0, sf = 1;
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        ans |= sf<<i;
+    }
+    cout << ans;
     return 0;
 }
