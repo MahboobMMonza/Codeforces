@@ -75,17 +75,21 @@ inline ll pLogPow(ll x, ll y, ll m = 9223372036854775783) { return logPow(x, y %
 int main() {
     fio;
     /**
-     * There are n^2 choices for the first location, and then the entire East/West and North/South road pair is
-     * eliminated, meaning the rest of the viable intersection come from (n - 1) EW roads and (n - 1) NS roads, or
-     * (n - 1)^2 choices for the next location. Similarly, there are now (n - 2)^2 choices for the 3rd location,
-     * (n - 3)^2 for the fourth, and (n - 4)^2 choices for the fifth. There are 5! permutations of these choices, so
-     * divide by 120 at the end. Notice that (n^2 * (n - 1)^2 * (n - 2)^2 * (n - 3)^2 * (n - 4)^2) is just the square
-     * of the numerator for the binomial coefficient for k = 5. So, compute the binomial coefficient first,
-     * then divide by 120, then multiply it by the binomial coefficient again.
+     * The brute force implementation will over-count all possible values, since there are some overlaps. Notice that
+     * all the even numbers are accounted for by subtracting the number of even numbers in [1, n] from n. Next, doing
+     * this for all multiples of 3 accounts for 3, 6, and 9. 6 was subtracted already, so the number of multiples of 6
+     * should be ADDED in. Subtracting the multiples of 5 covers all multiples of 5, 10 and 15, but 10 and 15 were again
+     * accounted for with the even numbers and multiples of 3, so ADD all multiples of 10 and 15, but then subtract all
+     * multiples of 30. Do the subtraction again for all multiples of 7. However, add in the multiples of 14, then 21,
+     * since they were double counted. Then subtract the multiples of 42 (7 * 2 * 3), since they will be added back
+     * twice. Then do this again with 35, but add back in the multiples of 70 (7 * 5 * 2) and 105 (7 * 5 * 3) since they
+     * would be double counted, but then the multiples of 210 (7 * 2 * 3 * 5) would be added back twice instead of once,
+     * so subtract them.
      *
      */
     ull n;
     cin >> n;
-    cout << (n * (n - 1ULL) * (n - 2ULL) * (n - 3ULL) * (n - 4ULL)) / 120ULL * (n * (n - 1ULL) * (n - 2ULL) * (n - 3ULL) * (n - 4ULL)) << edl;
+    cout << n - (n / 2) - (n / 3) + (n / 6) - (n / 5) + (n / 10) + (n / 15) - (n / 30) - (n / 7) + (n / 14) + (n / 21) -
+            (n / 42) + (n / 35) - (n / 70) - (n / 105) + (n / 210) << edl;
     return 0;
 }
