@@ -70,15 +70,22 @@ inline ll fsLogPow(ll x, ll y) {
     return res;
 }
 
+inline ll pLogPow(ll x, ll y, ll m = 9223372036854775783) { return logPow(x, y % (m - 1), m); }
+
 int main() {
     fio;
-    // This is simple exponentiation
-    // Take the value given for rate of increase per second and raise it to the given seconds
-    double rate = 1.000000011;
-    int n, t;
-    cin >> n >> t;
-    // Set the precision to reduce relative error
+    /**
+     * For this one, just solve the equation, storing -b + sqrt(b^2 - 4 * a * c) / (2 * a) as x1, and x2 for the
+     * subtraction of the square root. Then print max(x1, x2), new line, min(x1, x2). Alternatively, an array of
+     * 2 can be used to hold the roots.
+     *
+     */
+    int a, b, c;
+    cin >> a >> b >> c;
+    double x[2];
+    x[0] = ((-1 * b) + sqrt((b * b) - (4 * a * c))) / (2 * a);
+    x[1] = ((-1 * b) - sqrt((b * b) - (4 * a * c))) / (2 * a);
     cout << setprecision(12);
-    cout << (n * pow(rate, t)) << edl;
+    cout << max(x[0], x[1]) << edl << min(x[0], x[1]) << edl;
     return 0;
 }
