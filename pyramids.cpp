@@ -97,7 +97,7 @@ int main() {
      * theorem. Finally plug all values into the formula for the volume of a pyramid. Note that the process used to find
      * the area of a regular polygon works for any n-sided polygon, so a loop can be implemented to find the areas of
      * the base and the volume and added together, even though it is not necessary. Set a higher precision to get a
-     * smaller relative error.
+     * smaller relative error. Use radians as that is what the math library uses for the trigonometric functions.
      *
      */
      cout << setprecision(15);
@@ -108,7 +108,7 @@ int main() {
      double pi = acos(-1);
      double a_base, h, r, radians, volume = 0;
      for (int n = 3; n <= 5; n++) {
-         radians = (90 - (180 / n)) * (pi / 180);
+         radians = (pi / 2 - (pi / n));
          a_base = (l[n - 3] * l[n - 3] / 4.0) * n * tan(radians);
          r = l[n - 3] / (2 * cos(radians));
          h = sqrt(l[n - 3] * l[n - 3] - r * r);
