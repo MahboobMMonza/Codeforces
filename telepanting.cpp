@@ -74,6 +74,7 @@ inline ll fsLogPow(ll x, ll y) {
 inline ll pLogPow(ll x, ll y, ll m = 9223372036854775783) { return logPow(x, y % (m - 1), m); }
 
 int main() {
+    fio;
     /**
      * Notice that whenever the ant passes a portal and does not get teleported, the portal was initially closed and is
      * therefore opened. This means all portals BEHIND the ant are open at any given time. This means that whenever
